@@ -5,9 +5,9 @@ RUN > /var/lib/dpkg/statoverride
 
 # Set environment variables
 ENV APP_NAME="Tor Browser" \
-    TOR_VERSION=10.0.5 \
-    TOR_BINARY=https://www.torproject.org/dist/torbrowser/10.0.5/tor-browser-linux64-10.0.5_en-US.tar.xz \
-    TOR_SIGNATURE=https://www.torproject.org/dist/torbrowser/10.0.5/tor-browser-linux64-10.0.5_en-US.tar.xz.asc \
+    TOR_VERSION=10.0.6 \
+    TOR_BINARY=https://www.torproject.org/dist/torbrowser/10.0.6/tor-browser-linux64-10.0.6_en-US.tar.xz \
+    TOR_SIGNATURE=https://www.torproject.org/dist/torbrowser/10.0.6/tor-browser-linux64-10.0.6_en-US.tar.xz.asc \
     TOR_FINGERPRINT=0xEF6E286DDA85EA2A4BA7DE684E2C6E8793298290 \
     DEBIAN_FRONTEND=noninteractive
 
