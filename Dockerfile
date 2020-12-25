@@ -4,7 +4,7 @@ RUN echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic main" >>  /etc/apt/sou
 RUN > /var/lib/dpkg/statoverride
 
 # Set environment variables
-ENV TOR_VERSION=10.0.6
+ENV TOR_VERSION=10.0.7
 ENV APP_NAME="Tor Browser ${TOR_VERSION}" \
     TOR_BINARY=https://www.torproject.org/dist/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz \
     TOR_SIGNATURE=https://www.torproject.org/dist/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz.asc \
@@ -16,7 +16,9 @@ RUN install_app_icon.sh "https://github.com/DomiStyle/docker-tor-browser/raw/mas
 
 # Add wget and Tor browser dependencies
 RUN apt-get update && \
-    apt-get install -y wget gpg libdbus-glib-1-2 libgtk-3-0 pulseaudio vlc && \
+    sed 's/ messagebus / root /' /var/lib/dpkg/statoverride > tmp && \
+    mv tmp /var/lib/dpkg/statoverride && \
+    apt-get install -y wget gpg libdbus-glib-1-2 libgtk-3-0 pulseaudio vlc p7zip-full p7zip-rar && \
     rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -38,6 +40,19 @@ RUN tar --strip 1 -xvJf "${TOR_BINARY##*/}" && \
 
 # Copy browser cfg
 COPY browser-cfg /browser-cfg
+
+# RUN apt-get install -y libpulse0 alsa-utils
+#RUN apt-get install -y libpulse0
+
+#RUN apt-get install -y pulseaudio-utils
+COPY pulse-client.conf /etc/pulse/client.conf
+COPY pulse-default.pa /etc/pulse/default.pa
+
+#RUN useradd -d /app -u 1000 -g 1000 -s /bin/bash app
+# RUN userdel app && \
+# RUN   groupadd -g 1000 app && \
+#    useradd -u 1000 -g app -d /app -s /bin/bash app
+RUN grep -v "^app" /etc/passwd > /tmp/a && echo "app:x:1000:1000::/app:/bin/bash" >> /tmp/a && mv /tmp/a /etc/passwd
 
 # Add start script
 COPY startapp.sh /startapp.sh
