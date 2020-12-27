@@ -57,3 +57,6 @@ RUN grep -v "^app" /etc/passwd > /tmp/a && echo "app:x:1000:1000::/app:/bin/bash
 # Add start script
 COPY startapp.sh /startapp.sh
 
+COPY vlc.sh /vlc.sh
+# RUN apt-get install -y vim
+
