@@ -18,7 +18,7 @@ RUN install_app_icon.sh "https://github.com/DomiStyle/docker-tor-browser/raw/mas
 RUN apt-get update && \
     sed 's/ messagebus / root /' /var/lib/dpkg/statoverride > tmp && \
     mv tmp /var/lib/dpkg/statoverride && \
-    apt-get install -y wget gpg libdbus-glib-1-2 libgtk-3-0 pulseaudio vlc p7zip-full p7zip-rar && \
+    apt-get install -y wget gpg libdbus-glib-1-2 libgtk-3-0 pulseaudio vlc p7zip-full p7zip-rar vim && \
     rm -rf /var/lib/apt/lists/*
 
 # Set working directory
