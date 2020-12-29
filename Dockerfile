@@ -41,22 +41,13 @@ RUN tar --strip 1 -xvJf "${TOR_BINARY##*/}" && \
 # Copy browser cfg
 COPY browser-cfg /browser-cfg
 
-# RUN apt-get install -y libpulse0 alsa-utils
-#RUN apt-get install -y libpulse0
-
-#RUN apt-get install -y pulseaudio-utils
 COPY pulse-client.conf /etc/pulse/client.conf
-COPY pulse-default.pa /etc/pulse/default.pa
 
-#RUN useradd -d /app -u 1000 -g 1000 -s /bin/bash app
-# RUN userdel app && \
-# RUN   groupadd -g 1000 app && \
-#    useradd -u 1000 -g app -d /app -s /bin/bash app
-RUN grep -v "^app" /etc/passwd > /tmp/a && echo "app:x:1000:1000::/app:/bin/bash" >> /tmp/a && mv /tmp/a /etc/passwd
+# Using as a client only at the moment
+#COPY pulse-default.pa /etc/pulse/default.pa
 
 # Add start script
 COPY startapp.sh /startapp.sh
 
-COPY vlc.sh /vlc.sh
-# RUN apt-get install -y vim
+COPY vlc.sh /app/vlc.sh
 
