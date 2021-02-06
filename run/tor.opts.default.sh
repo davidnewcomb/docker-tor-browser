@@ -22,5 +22,11 @@ SHARED_LOCAL_FOLDER="$HOME/tmp"
 DOCKER_IMAGE_TAG="domistyle/tor-browser"
 
 # PulseAudio needs the IP of your host to connect
-HOST_IP=$(ip)
+# Darwin
+#HOST_IP=$(ip)
+# Linux
+HOST_IP=$(hostname -I | awk '{print $1}')
+
+
+
 
