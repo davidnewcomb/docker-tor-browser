@@ -23,10 +23,6 @@ DOCKER_IMAGE_TAG="domistyle/tor-browser"
 
 # PulseAudio needs the IP of your host to connect
 # Darwin
-#HOST_IP=$(ip)
+#HOST_IP=$(ifconfig | grep broadcast | awk '{print $2}')
 # Linux
-HOST_IP=$(hostname -I | awk '{print $1}')
-
-
-
-
+#HOST_IP=$(hostname -I | awk '{print $1}')
