@@ -4,7 +4,7 @@ RUN echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic main" >>  /etc/apt/sou
 RUN > /var/lib/dpkg/statoverride
 
 # Set environment variables
-ENV TOR_VERSION=10.0.13
+ENV TOR_VERSION=10.0.15
 ENV APP_NAME="Tor Browser ${TOR_VERSION}" \
     TOR_BINARY=https://www.torproject.org/dist/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz \
     TOR_SIGNATURE=https://www.torproject.org/dist/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz.asc \
@@ -18,7 +18,7 @@ RUN install_app_icon.sh "https://github.com/DomiStyle/docker-tor-browser/raw/mas
 RUN apt-get update && \
     sed 's/ messagebus / root /' /var/lib/dpkg/statoverride > tmp && \
     mv tmp /var/lib/dpkg/statoverride && \
-    apt-get install -y wget gpg libdbus-glib-1-2 libgtk-3-0 pulseaudio vlc p7zip-full p7zip-rar vim && \
+    apt-get install -y wget gpg libdbus-glib-1-2 libgtk-3-0 pulseaudio vlc p7zip-full p7zip-rar vim xclip  && \
     rm -rf /var/lib/apt/lists/*
 
 # Set working directory
