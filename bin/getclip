@@ -1,0 +1,2 @@
+xclip -o -sel clip
+echo ""
