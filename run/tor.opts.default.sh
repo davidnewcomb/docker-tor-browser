@@ -16,7 +16,7 @@ DISPLAY_WIDTH=1426
 DISPLAY_HEIGHT=897
 
 # Local folder to map inside VM, appears as /app/host
-SHARED_LOCAL_FOLDER="$HOME/tmp"
+SHARED_LOCAL_FOLDER="host"
 
 # Docker Image
 DOCKER_IMAGE_TAG="domistyle/tor-browser"

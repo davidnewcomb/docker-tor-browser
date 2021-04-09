@@ -60,10 +60,10 @@ echo "http://localhost:$EXTERNAL_PORT_VNC/"
 echo ""
 echo "Full Id: $DOCKER_INSTANCE_ID"
 echo ""
-echo "docker kill $IMAGE_ID"
+echo "# docker kill $IMAGE_ID"
 echo "IMAGE_ID=$IMAGE_ID"
 echo "docker exec -it $IMAGE_ID /bin/bash"
-echo ""
+echo "echo 'file:///app/host/home.html' | xclip -sel clip"
 docker ps --format "{{.ID}} {{.Image}} {{.Status}}"
 echo ""
 
@@ -74,6 +74,8 @@ then
 	docker wait $IMAGE_ID
 	PID=`cat $PA_PID`
 	kill $PID
+else
+	echo "Using native pulse audio"
 fi
 
 echo "Terminated"
