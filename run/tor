@@ -62,8 +62,11 @@ echo "Full Id: $DOCKER_INSTANCE_ID"
 echo ""
 echo "# docker kill $IMAGE_ID"
 echo "IMAGE_ID=$IMAGE_ID"
+
 echo "docker exec -it $IMAGE_ID /bin/bash"
-echo "echo 'file:///app/host/home.html' | xclip -sel clip"
+echo 'export PATH=/app/host/bin:$PATH'
+echo "setclip 'file:///app/host'"
+
 docker ps --format "{{.ID}} {{.Image}} {{.Status}}"
 echo ""
 

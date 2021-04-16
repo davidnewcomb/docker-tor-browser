@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+while [ true ]
+do
+	getclip
+	echo ""
+	echo "Set clipboard (or return to get clipboard)"
+	read clip
+	if [ "$clip" != "" ]
+	then
+		setclip "$clip"
+		echo "setclip '$clip'"
+	fi
+done
