@@ -65,7 +65,7 @@ echo "IMAGE_ID=$IMAGE_ID"
 
 echo "docker exec -it $IMAGE_ID /bin/bash"
 echo 'export PATH=/app/host/bin:$PATH'
-echo "setclip 'file:///app/host'"
+echo "setclip 'file:///app/host/home.html'"
 
 docker ps --format "{{.ID}} {{.Image}} {{.Status}}"
 echo ""
