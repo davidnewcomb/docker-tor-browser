@@ -50,3 +50,4 @@ COPY pulse-client.conf /etc/pulse/client.conf
 # Add start script
 COPY startapp.sh /startapp.sh
 
+RUN setclip "file:///app/host/home.html"

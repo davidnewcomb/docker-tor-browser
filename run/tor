@@ -64,7 +64,6 @@ echo "# docker kill $IMAGE_ID"
 echo "IMAGE_ID=$IMAGE_ID"
 
 echo "docker exec -it $IMAGE_ID /bin/bash"
-echo 'export PATH=/app/host/bin:$PATH'
 echo "setclip 'file:///app/host/home.html'"
 
 docker ps --format "{{.ID}} {{.Image}} {{.Status}}"
@@ -73,6 +72,9 @@ echo ""
 if [ "$PLAT" != "Linux" ]
 then
 	$RUN/audio.sh &
+	docker exec -it $IMAGE_ID /app/host/bin/setclip file:///app/host/home.html
+	echo "Waiting for docker shell to end..."
+	docker exec -it $IMAGE_ID /bin/bash
 	echo "Waiting for docker to end..."
 	docker wait $IMAGE_ID
 	PID=`cat $PA_PID`
