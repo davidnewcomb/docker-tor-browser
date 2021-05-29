@@ -1,5 +1,11 @@
 #!/bin/bash
 #
 
-docker build -t domistyle/tor-browser .
+CLEAN=""
+if [ "$1" = "clean" ]
+then
+	CLEAN="--no-cache"
+fi
+
+docker build $CLEAN -t domistyle/tor-browser .
 
